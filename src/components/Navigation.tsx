@@ -124,7 +124,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
                   onNavigate(item.id);
                   setMobileMenuOpen(false);
                 }}
-                className={`block w-full text-left px-4 py-3 rounded-lg ${
+                className={`block w-full text-center px-4 py-3 rounded-lg ${
                   currentPage === item.id
                     ? "text-[#E62B1E] bg-red-50 dark:bg-red-950/30"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
