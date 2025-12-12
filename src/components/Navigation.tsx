@@ -35,7 +35,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
             className="flex-shrink-0 cursor-pointer"
-            onClick={() => onNavigate("landing")}
+            onClick={() => onNavigate("home")}
           >
             <div className="flex items-center gap-2">
               <div className="text-xl tracking-tight">
