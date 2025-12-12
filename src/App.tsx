@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { Navigation } from "./components/Navigation";
@@ -17,6 +17,25 @@ export default function App() {
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page);
   };
+
+  const SITE_TITLE = "TEDxCongaree Vista";
+
+useEffect(() => {
+  const titles: Record<Page, string> = {
+    home: "",
+    speakers: "Speakers",
+    sponsors: "Sponsors",
+    support: "Support",
+    news: "News",
+    about: "About",
+  };
+
+  const pageTitle = titles[currentPage];
+  document.title = pageTitle
+    ? `${pageTitle} | ${SITE_TITLE}`
+    : SITE_TITLE;
+}, [currentPage]);
+
 
   const renderPage = () => {
     switch (currentPage) {
