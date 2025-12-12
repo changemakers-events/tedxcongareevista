@@ -8,6 +8,7 @@ import { SponsorsPage } from "./components/SponsorsPage";
 import { SupportPage } from "./components/SupportPage";
 import { NewsPage } from "./components/NewsPage";
 import { AboutPage } from "./components/AboutPage";
+import { Footer } from "./components/FooterPage";
 
 type Page = "home" | "speakers" | "sponsors" | "support" | "news" | "about";
 
@@ -69,6 +70,7 @@ useEffect(() => {
             transition={{ duration: 0.5 }}
           >
             {renderPage()}
+            <Footer />
           </motion.div>
         </AnimatePresence>
       </div>

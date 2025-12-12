@@ -99,31 +99,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
       </section>
-
-      {/* About Section */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl mb-8 text-black dark:text-white">
-              Columbia's Premier <span className="text-[#E62B1E]">TEDx Event</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-              Help us bring a standard TEDx event back to Columbia, SC after 10 years!
-            </p>
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-              Fill out the interest form to register your interest in attending, sponsoring, or helping with our event. Completing the form will also subscribe you to our mailing list to get updates on the event, and be the first to know when tickets go on sale on November 1st.
-            </p>
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              Be sure to also follow us on social media to stay in the loop!
-            </p>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }
