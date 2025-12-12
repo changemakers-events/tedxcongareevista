@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import tedxLogo from "../assets/tedx-official-logo.png";
 
 interface NavigationProps {
   currentPage: string;
@@ -37,11 +38,12 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             className="flex-shrink-0 cursor-pointer"
             onClick={() => onNavigate("home")}
           >
-            <div className="flex items-center gap-2">
-              <div className="text-xl tracking-tight">
-                <span className="text-[#E62B1E]">TEDx</span>
-                <span className="text-black dark:text-white">Congaree Vista</span>
-              </div>
+            <div className="flex items-center gap-1">
+              <img
+                src={tedxLogo}
+                alt="TEDx Congaree Vista Official Logo"
+                className="w-[90px] h-auto object-contain md:w-[110px]"
+              />
             </div>
           </motion.div>
 
