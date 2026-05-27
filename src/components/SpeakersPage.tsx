@@ -239,23 +239,29 @@ export function SpeakersPage() {
                 {session.label}
               </motion.h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {session.speakers.map((speaker, index) => (
+                {session.speakers.map((speaker, index) => {
+                  const hasLink = speaker.youtubeUrl && speaker.youtubeUrl !== "#";
+
+                  return (
                   <motion.div
                     key={speaker.name}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 * (sessionIndex * 4 + index), duration: 0.6 }}
                     whileHover={{ y: -8 }}
-                    className="group cursor-pointer"
+                    className={`group ${hasLink ? 'cursor-pointer' : ''}`}
                   >
                     <motion.a
-                      href={speaker.youtubeUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Watch ${speaker.name}'s talk on YouTube`}
-                      className="relative block overflow-hidden rounded-2xl bg-gray-100 aspect-square mb-4 cursor-pointer"
-                      whileHover={{ scale: 1.05 }}
+                      href={hasLink ? speaker.youtubeUrl : undefined}
+                      target={hasLink ? "_blank" : undefined}
+                      rel={hasLink ? "noreferrer" : undefined}
+                      aria-label={hasLink ? `Watch ${speaker.name}'s talk on YouTube` : undefined}
+                      className={`relative block overflow-hidden rounded-2xl bg-gray-100 aspect-square mb-4 ${hasLink ? 'cursor-pointer' : 'cursor-default'}`}
+                      whileHover={hasLink ? { scale: 1.05 } : { }}
                       transition={{ duration: 0.6 }}
+                      onClick={(e) => {
+                        if (!hasLink) e.preventDefault();
+                      }}
                     >
                       <motion.div
                           className="h-full w-full"
@@ -271,15 +277,19 @@ export function SpeakersPage() {
                         </div>
                     </motion.a>
                     <h3 className="text-xl font-bold text-gray-900 text-center">
-                      <a
-                        href={speaker.youtubeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Watch ${speaker.name}'s talk on YouTube`}
-                        className="inline-block"
-                      >
-                        {speaker.name}
-                      </a>
+                      {hasLink ? (
+                        <a
+                          href={speaker.youtubeUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Watch ${speaker.name}'s talk on YouTube`}
+                          className="inline-block hover:underline"
+                        >
+                          {speaker.name}
+                        </a>
+                      ) : (
+                        <span className="inline-block">{speaker.name}</span>
+                      )}
                     </h3>
                     <p className="mt-1 text-sm font-medium text-gray-500 text-center line-clamp-2">
                       {speaker.jobTitle}
@@ -288,7 +298,8 @@ export function SpeakersPage() {
                       {speaker.bio}
                     </p>
                   </motion.div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}
