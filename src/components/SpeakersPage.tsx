@@ -34,7 +34,7 @@ export function SpeakersPage() {
         { name: "Elise Partin",
           jobTitle: "Mayor of Cayce",
           bio: "Longest-serving mayor in the Midlands; U.S. State Department speaker and advocate for women in leadership.",
-          title: "It benefits us all to have more women in elected office. Let's make it happen",
+          title: "One Thing That Can Make All Cities and Towns Better",
           description: "Why communities thrive with more women leaders and the practical approach needed to elect and support them.",
           image: ElisePartin,
           youtubeUrl: "#" },
@@ -58,10 +58,10 @@ export function SpeakersPage() {
         { name: "Shannon Ivey",
           jobTitle: "Author, Founder of #whatshesaidproject",
           bio: "Actor, director, TEDx alum, professional coach, founder of #whatshesaidproject, and stage III colorectal cancer survivor.",
-          title: "Elephants Care Better",
+          title: "Elephants Don’t Ghost: What Colorectal Cancer Taught Me About Care",
           description: "What elephants and ring theory teach about centering and protecting vulnerable people and building stronger caring cultures.",
           image: ShannonIvey,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=SloEhSgZOQ4" },
       ],
     },
     {
@@ -73,15 +73,15 @@ export function SpeakersPage() {
           title: "Nowhere to Go: The Coming Nursing Home Crisis",
           description: "The looming workforce shortage in long-term care and how tech and policy must work together to protect aging Americans.",
           image: AndrewNye,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=NIlRnd9zOAw" },
 
         { name: "Kimberly Smith",
           jobTitle: "CEO, Health Evolve Technologies",
           bio: "CEO of Health Evolve Technologies; former hospital system executive and past Board Chair of the Preeclampsia Foundation; PhD student in Global Health Equity.",
-          title: "From Hospital to Home: Tech's Role in Reclaiming America's Maternal Health Story",
+          title: "Reclaiming America's Birth Story",
           description: "Why maternal health outcomes improve when care moves beyond hospital walls into homes by blending devices, digital navigation, and social supports to close deadly gaps.",
           image: KimberlySmith,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=1feskxwL3Q8" },
 
         { name: "Fabio Matta",
           jobTitle: "Associate Professor, Civil and Environmental Engineering, USC",
@@ -89,7 +89,7 @@ export function SpeakersPage() {
           title: "From the ground up: Hazard-resistant homebuilding with dirt",
           description: "Using reinforced local soil to create affordable, sustainable homes that outperform traditional structures in extreme weather.",
           image: FabioMatta,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=5S9-CGvSGJ8" },
 
         { name: "Melissa Boylan, MD",
           jobTitle: "Family Medicine Physician, Noreta Family Medicine",
@@ -97,7 +97,7 @@ export function SpeakersPage() {
           title: "The Doctor Will See You Now, For Real This Time",
           description: "Why direct primary care strengthens doctor-patient trust, improves access, and reduces system burnout.",
           image: MelissaBoylan,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=dmNyUL71i0M" },
       ],
     },
     {
@@ -106,23 +106,23 @@ export function SpeakersPage() {
         { name: "Alvin King",
           jobTitle: "Founder and Executive Director, Range Fore Hope Foundation",
           bio: "Retired U.S. Army First Sergeant; founder of Range Fore Hope Foundation supporting veterans and families.",
-          title: "Teeing Off Trauma: How Golf Became a Lifeline for Veterans and Their Families",
+          title: "FORE! Changing the Course of Community Healing",
           description: "How golf builds connection, restores identity, and supports healing for veterans and loved ones.",
           image: AlvinKing,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=lxLXdlaCLg8" },
 
         { name: "Christina Jones",
           jobTitle: "Licensed Professional Counselor, University of South Carolina",
           bio: "Licensed Professional Counselor and Supervisor at USC; neurodivergent advocate and trainer.",
-          title: "Rethinking Spaces Through Neurodivergent Eyes",
+          title: "When the World is Too Loud, Creating Spaces for Belonging",
           description: "Practical sensory environment changes, such as sound, light, and layout, that transform exclusion into belonging for neurodivergent people and everyone.",
           image: ChristinaJones,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=j2Vgd4HUGn0" },
 
         { name: "Risdon Nichols Slate",
           jobTitle: "Professor Emeritus of Criminology, Florida Southern College",
           bio: "Professor Emeritus of Criminology; national expert on mental illness and criminal justice; congressional witness and CIT trainer.",
-          title: "Mental Illness and the Criminal Justice System; Crisis and Opportunity",
+          title: "The Criminalization of Mental Illness",
           description: "Personal disclosure and systemic reform to reduce stigma and divert individuals with mental illness from incarceration toward treatment.",
           image: RisdonNSlate,
           youtubeUrl: "#" },
@@ -130,7 +130,7 @@ export function SpeakersPage() {
         { name: "Majd Abdallah",
           jobTitle: "Founder, Foster Friendz",
           bio: "Foster care advocate; Clemson graduate; foster family recruiter; founder of Foster Friendz.",
-          title: "From Foster Child to Changemaker: A Blue Bear's Story",
+          title: "Are We Doing Enough for Kids in Foster Care?",
           description: "A simple blue stuffed bear as a tool to raise awareness, ignite empathy, and mobilize community support for foster youth.",
           image: MajdAbdallah,
           youtubeUrl: "#" },
@@ -142,7 +142,7 @@ export function SpeakersPage() {
         { name: "Kevin Williams",
           jobTitle: "Co-Founder, Drawbridge Solutions",
           bio: "Vistage Chair and tech leader; founder of Drawbridge Solutions and owner of Escapology Columbia.",
-          title: "The Irreplaceable Spark: Why Wild Ideas Matter More Than Ever",
+          title: "The Struggle is The Cure",
           description: "Generative AI is derivative, which is why human creativity is more crucial than ever for original solutions and careers.",
           image: KevinWilliams,
           youtubeUrl: "https://www.youtube.com/watch?v=93Xr99du_IQ" },
@@ -166,10 +166,10 @@ export function SpeakersPage() {
         { name: "Matt Vaadi",
           jobTitle: "CEO, guHRoo Payroll and HR",
           bio: "Social entrepreneur; CEO of guHRoo; co-founder of GrowCo supporting responsible entrepreneurial growth.",
-          title: "Mission Over Margin: The Ripple Effect of Generosity in Entrepreneurship",
+          title: "Giving is the Most Selfish Thing You Can Do",
           description: "Giving early and often builds stronger companies, loyalty, and community impact.",
           image: MattVaadi,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=STpMxUZo2Dc" },
       ],
     },
   ];
@@ -183,9 +183,44 @@ export function SpeakersPage() {
             <h1 className="about-hero-title">
               Our Speakers
             </h1>
-            <p className="about-hero-subtitle">
+            <p className="about-hero-subtitle" style={{ marginBottom: '1.5rem' }}>
               Meet the visionaries, innovators, and changemakers who shared their groundbreaking ideas
             </p>
+            <div className="flex justify-center" style={{ marginTop: '1.25rem' }}>
+              <motion.a
+                href="https://www.youtube.com/playlist?list=PL4tc6u_lEThgWNhC2UyfEtR5dPA-wCd1I"
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="
+                  relative inline-flex items-center justify-center
+                  px-10 sm:px-12 py-4
+                  rounded-full
+                  text-base sm:text-lg font-semibold tracking-wide
+                  text-black
+                  bg-white
+                  border border-white/20
+                  backdrop-blur-md
+                  shadow-[0_18px_55px_rgba(0,0,0,0.35)]
+                  hover:border-white/35
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60
+                  transition-all duration-300
+                "
+              >
+                {/* subtle inner gradient sheen */}
+                <span
+                  className="
+                    pointer-events-none absolute inset-0 rounded-full
+                    bg-gradient-to-r from-[#E62B1E]/35 via-white/10 to-[#8B1230]/30
+                    opacity-70
+                  "
+                />
+                <span className="relative flex items-center gap-2">
+                  📹 Watch all talks on YouTube
+                </span>
+              </motion.a>
+            </div>
           </motion.div>
         </div>
       </section>
