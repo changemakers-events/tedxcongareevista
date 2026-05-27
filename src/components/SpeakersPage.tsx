@@ -133,7 +133,7 @@ export function SpeakersPage() {
           title: "Are We Doing Enough for Kids in Foster Care?",
           description: "A simple blue stuffed bear as a tool to raise awareness, ignite empathy, and mobilize community support for foster youth.",
           image: MajdAbdallah,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=-Hx-RFajucg" },
       ],
     },
     {
@@ -161,7 +161,7 @@ export function SpeakersPage() {
           title: "The Sport Remedy",
           description: "How sport biology and rhythm build regulation, connection, and resilience for youth on the margins.",
           image: JordanThomas,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=BWs_jzqLK_0" },
 
         { name: "Matt Vaadi",
           jobTitle: "CEO, guHRoo Payroll and HR",
