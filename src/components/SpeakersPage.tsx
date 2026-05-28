@@ -53,7 +53,7 @@ export function SpeakersPage() {
           title: "Find Your Passion: Become a Pioneer",
           description: "Inspiring Latinos to use passion for advocacy to build stronger communities and expand representation.",
           image: IvanSegura,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=o_kDQlpO1fM" },
 
         { name: "Shannon Ivey",
           jobTitle: "Author, Founder of #whatshesaidproject",
@@ -125,7 +125,7 @@ export function SpeakersPage() {
           title: "The Criminalization of Mental Illness",
           description: "Personal disclosure and systemic reform to reduce stigma and divert individuals with mental illness from incarceration toward treatment.",
           image: RisdonNSlate,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=8EAYB0Ks1_A" },
 
         { name: "Majd Abdallah",
           jobTitle: "Founder, Foster Friendz",
