@@ -45,7 +45,7 @@ export function SpeakersPage() {
           title: "Grow Up and Grow Old: Creating Cities of Lifelong Belonging",
           description: "Transforming cities by connecting young talent to real opportunities so they build and stay in the community long-term.",
           image: TysonKBrown,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=RmEnt9cTTFs" },
 
         { name: "Ivan Segura",
           jobTitle: "Director of Multicultural Affairs, SC Commission for Minority Affairs",
@@ -153,7 +153,7 @@ export function SpeakersPage() {
           title: "Leading When You Are Not in Charge",
           description: "A practical leadership formula built on clarity, competence, character, and connection for influence without authority.",
           image: TylerRobertson,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=kCvdNUZ9d4w" },
 
         { name: "Jordan Thomas",
           jobTitle: "Co-Founder, share ONE love",
