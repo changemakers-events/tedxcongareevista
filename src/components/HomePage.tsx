@@ -137,9 +137,11 @@ export function HomePage() {
             {/* Tickets CTA */}
               <div className="mt-12 sm:mt-16 flex flex-col items-center gap-6">
                 <motion.a
-                  href="https://youtube.com/live/ohZBlkOXFKA?feature=share"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/speakers"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/speakers");
+                  }}
                   whileHover={{ y: -2, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="
@@ -166,7 +168,7 @@ export function HomePage() {
                     "
                   />
                   <span className="relative flex items-center gap-2">
-                    🔴 Watch recording on YouTube
+                    🔴 Experience the talks →
                   </span>
                 </motion.a>
                 <motion.a
