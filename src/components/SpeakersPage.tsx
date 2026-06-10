@@ -20,12 +20,6 @@ import TylerRobertson from "../assets/speakers/TylerRobertson.webp"
 import JordanThomas from "../assets/speakers/JordanThomas.webp"
 import MattVaadi from "../assets/speakers/MattVaadi.webp"
 
-
-// If this file lives in src/pages/, change the imports above to:
-// import female1 from "../../assets/sample-speaker-female1.webp";
-// import female2 from "../../assets/sample-speaker-female2.webp";
-// import male from "../../assets/sample-speaker-male.webp";
-
 export function SpeakersPage() {
   const sessions = [
     {
@@ -37,7 +31,7 @@ export function SpeakersPage() {
           title: "One Thing That Can Make All Cities and Towns Better",
           description: "Why communities thrive with more women leaders and the practical approach needed to elect and support them.",
           image: ElisePartin,
-          youtubeUrl: "#" },
+          youtubeUrl: "https://www.youtube.com/watch?v=z6DKJgM1Qzo" },
 
         { name: "Tyson Keon Brown",
           jobTitle: "Executive Director, Project OneWay",
