@@ -1,0 +1,23 @@
+export const event = {
+  name: "TEDxCongaree Vista",
+  tagline: "Ideas worth spreading in Columbia, South Carolina.",
+  date: "Saturday, March 14, 2026",
+  dateShort: "March 14, 2026",
+  time: "10 AM – 5 PM",
+  venue: "Columbia Metropolitan Convention Center",
+  city: "Columbia, SC",
+  speakerCount: 16,
+  theme: "ChangeMakers",
+  parentOrg: "Inspire Columbia (501(c)3 nonprofit)",
+  links: {
+    tickets: "https://tickets.coladaily.com/events/tedxcongaree-vista-3-14-2026",
+    donate: "https://www.zeffy.com/en-US/donation-form/support-educational-events-in-columbia-sc",
+    volunteer: "https://docs.google.com/forms/d/e/1FAIpQLScFrVyPWl-e2bKzhG4zqqTGjCIn4XrtUKUvkGjOpkvb5qpxUg/viewform",
+    youtubePlaylist: "https://www.youtube.com/playlist?list=PL4tc6u_lEThgWNhC2UyfEtR5dPA-wCd1I",
+    photos: "https://www.flickr.com/photos/inspirecolumbia/albums/72177720332590194",
+    newsletter: "https://news.tedxcongareevista.com/",
+    instagram: "https://www.instagram.com/tedxcongareevista",
+    email: "info@tedxcongareevista.com",
+    tedxProgram: "https://www.ted.com/about/programs-initiatives/tedx-program",
+  },
+};
