@@ -1,0 +1,67 @@
+/* HomePage.css — hero corkboard speaker photos */
+
+/* Layer of speaker photos pinned to the left/right edges of the hero.
+   Hidden on smaller screens so the hero stays focused on the CTA. */
+.hero-photos {
+  position: absolute;
+  inset: 0;
+  z-index: 5; /* above the background image, below the centered content (z-10) */
+  pointer-events: none;
+  display: none;
+}
+
+/* Only show the photos once the viewport is wide AND tall enough to hold two
+   stacked photos per side plus the centered content — below this they hide
+   rather than overlap (also covers high browser zoom, which shrinks vw/vh). */
+@media (min-width: 1280px) and (min-height: 600px) {
+  .hero-photos {
+    display: block;
+  }
+}
+
+/* A single photo — white polaroid-style frame with a dropped shadow.
+   Size is bounded by BOTH viewport
+   height (21vh, so two stack without overlapping and the lower photo's shadow
+   clears the hero's bottom edge) and viewport width (15vw, so they never crowd
+   the centered content), clamped 175–250px. */
+.hero-photo {
+  --photo: clamp(175px, min(21vh, 15vw), 250px);
+  position: absolute;
+  width: var(--photo);
+  padding: 10px 10px 30px;
+  background: #fdfdf8;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.hero-photo-img {
+  width: 100%;
+  height: var(--photo);
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Pinned positions — two on the left edge, two on the right, each at a slight
+   casual angle. The top pair starts below the fixed navbar (~88px).
+   The casual rotation is applied via Motion (in HomePage.tsx) alongside the
+   slide-up entrance, since Motion owns the element's `transform`. */
+.hero-photo--lt {
+  top: 100px;
+  left: 1.5%;
+}
+
+.hero-photo--lb {
+  bottom: 60px;
+  left: 4%;
+}
+
+.hero-photo--rt {
+  top: 100px;
+  right: 1.5%;
+}
+
+.hero-photo--rb {
+  bottom: 60px;
+  right: 4%;
+}
