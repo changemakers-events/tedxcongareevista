@@ -1,0 +1,124 @@
+/* SpeakersPage.css — speaker card layout */
+
+/* Card is a column so the "Watch Talk" CTA can pin to the bottom,
+   keeping CTAs aligned across a row regardless of bio length. */
+.speaker-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Portrait */
+.speaker-portrait {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.06);
+  aspect-ratio: 1 / 1;
+}
+
+.speaker-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+a.speaker-portrait:hover img {
+  transform: scale(1.05);
+}
+
+/* Name */
+.speaker-name {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.speaker-name a {
+  transition: color 0.18s ease;
+}
+
+.speaker-name a:hover {
+  color: #e62b1e;
+}
+
+/* Persistent talk title */
+.speaker-talk {
+  margin-top: 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: #374151;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.speaker-talk a {
+  transition: color 0.18s ease;
+}
+
+.speaker-talk a:hover {
+  color: #e62b1e;
+}
+
+/* Role / job title */
+.speaker-role {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+/* Short bio */
+.speaker-bio {
+  margin-top: 0.5rem;
+  /* Guarantees a gap before the pinned "Watch Talk" button even on the tallest
+     card in a row, where the button's margin-top: auto collapses to zero. */
+  margin-bottom: 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-gray-600, #4b5563);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Watch Talk CTA — filled red pill, centered and pinned to the bottom */
+.watch-talk {
+  margin-top: auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #e62b1e;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(230, 43, 30, 0.20);
+  transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.watch-talk:hover {
+  background: #c22419;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(230, 43, 30, 0.26);
+}
