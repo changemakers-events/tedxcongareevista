@@ -4,90 +4,21 @@ import { motion } from "motion/react";
 /**
  * TEDxCongaree Vista — total YouTube playlist view counter.
  *
- * Sums the view counts of every talk in our playlist and renders the total as
- * one large, bold number.
+ * Renders the summed view count of every talk in our playlist as one large,
+ * bold number.
  *
- * SETUP (one time):
- * 1. Google Cloud console → create/select a project.
- * 2. Enable "YouTube Data API v3" (APIs & Services → Library).
- * 3. Create an API key (APIs & Services → Credentials).
- * 4. Because this key ships to the browser, restrict it:
- *      - Application restriction: "Websites" → add your domain(s).
- *      - API restriction: YouTube Data API v3 only.
- * 5. Put the key in a .env file at the repo root as:
- *      VITE_YT_API_KEY=your_key_here
- *    Without it, this section renders nothing.
+ * The count is fetched from our own serverless endpoint (`/api/youtube-views`),
+ * which talks to the YouTube API using a SERVER-ONLY key. The key never reaches
+ * the browser, so it needs no domain/referrer restriction. See:
+ *   - api/youtube-views.js  (the endpoint)
+ *   - Vercel env var:        YT_API_KEY  (not VITE_-prefixed)
  *
- * Quota cost: ~2 units per page load, out of a 10,000/day free quota.
+ * If the endpoint is unavailable (e.g. running plain `vite dev` with no
+ * functions, or an API error), we show FALLBACK_TOTAL instead of 0.
  */
 
-const PLAYLIST_ID = "PL4tc6u_lEThgWNhC2UyfEtR5dPA-wCd1I";
-const API_KEY = import.meta.env.VITE_YT_API_KEY;
-
-// Shown when the view total can't be fetched/calculated (no key, API error, empty result).
+// Shown when the view total can't be fetched/calculated (endpoint down, API error, empty result).
 const FALLBACK_TOTAL = "100,000+";
-
-type Video = { id: string; title: string; views: number };
-
-/**
- * Fetches every video ID in the playlist (paginated, so it keeps working past
- * 50 talks), then fetches statistics for all of them in batched calls.
- */
-export async function fetchPlaylistViews(
-  playlistId = PLAYLIST_ID,
-  apiKey = API_KEY,
-): Promise<{ totalViews: number; videos: Video[] }> {
-  // --- Step 1: get all video IDs in the playlist ---
-  const videoIds: string[] = [];
-  let pageToken = "";
-
-  do {
-    const url = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
-    url.search = new URLSearchParams({
-      part: "contentDetails",
-      playlistId,
-      maxResults: "50",
-      pageToken,
-      key: apiKey,
-    }).toString();
-
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`playlistItems request failed: ${res.status}`);
-    const data = await res.json();
-
-    for (const item of data.items ?? []) {
-      videoIds.push(item.contentDetails.videoId);
-    }
-    pageToken = data.nextPageToken ?? "";
-  } while (pageToken);
-
-  // --- Step 2: get view counts (videos.list accepts up to 50 IDs per call) ---
-  const videos: Video[] = [];
-  for (let i = 0; i < videoIds.length; i += 50) {
-    const batch = videoIds.slice(i, i + 50);
-    const url = new URL("https://www.googleapis.com/youtube/v3/videos");
-    url.search = new URLSearchParams({
-      part: "statistics,snippet",
-      id: batch.join(","),
-      key: apiKey,
-    }).toString();
-
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`videos request failed: ${res.status}`);
-    const data = await res.json();
-
-    for (const v of data.items ?? []) {
-      videos.push({
-        id: v.id,
-        title: v.snippet.title,
-        views: Number(v.statistics.viewCount ?? 0),
-      });
-    }
-  }
-
-  const totalViews = videos.reduce((sum, v) => sum + v.views, 0);
-  return { totalViews, videos };
-}
 
 /** Counts up to `target` once, over `duration` ms, easing out. */
 function useCountUp(target: number, duration = 1600) {
@@ -119,15 +50,14 @@ export function ViewCounter() {
   }>({ status: "loading", totalViews: 0 });
 
   useEffect(() => {
-    if (!API_KEY) {
-      console.warn("ViewCounter: VITE_YT_API_KEY is not set — hiding the view counter.");
-      setState({ status: "error", totalViews: 0 });
-      return;
-    }
     let cancelled = false;
-    fetchPlaylistViews()
-      .then(({ totalViews }) => {
-        if (!cancelled) setState({ status: "done", totalViews });
+    fetch("/api/youtube-views")
+      .then((res) => {
+        if (!res.ok) throw new Error(`youtube-views endpoint failed: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (!cancelled) setState({ status: "done", totalViews: Number(data.totalViews ?? 0) });
       })
       .catch((err) => {
         console.error(err);
