@@ -187,7 +187,7 @@ export function AboutTEDPage() {
 
               <div className="pt-8 text-center flex justify-center">
                 <a
-                  href="https://www.ted.com/tedx/events/61037"
+                  href="https://www.ted.com/tedx/events/65258"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#E62B1E] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#CC2619] transition-all hover:scale-105 active:scale-95 shadow-md"
