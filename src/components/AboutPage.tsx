@@ -50,20 +50,20 @@ Let’s create something powerful, together.`;
       name: "Shyam Ganesh Babu",
       role: "Lead Organizer",
       photoUrl: Shyam,
-      bio: `Shyam Ganesh Babu is a student at the University of South Carolina pursuing a career in healthcare. A Columbia native, he takes pride in the incredible people and ideas emerging from the city.
+      bio: `Shyam Ganesh Babu is a graduate of the University of South Carolina pursuing a career in healthcare. A Columbia native, he takes pride in the incredible people and ideas emerging from the city.
 He is the founder of MedElem, a program that delivers hands-on health education to underserved communities, and PhysiLink, a mentorship platform that connects pre-health students with physicians. Shyam’s work is driven by a passion for healthcare education, leadership, and service. He believes in innovation, impact, grassroots action, and breaking barriers.`,
     },
     {
       name: "Darssan Eswaramoorthi",
       role: "Executive Producer (Co-organizer)",
       photoUrl: Darssan,
-      bio: `Darssan L. Eswaramoorthi is a senior at the University of South Carolina majoring in Computer Engineering, with research spanning Hybrid AI and hardware cybersecurity. Passionate about creating opportunities for others, he leads initiatives that spotlight people’s strengths, from co-organizing TEDxCongaree Vista to founding and growing organizations that connect students with industry, service, and leadership experiences. His work bridges technology, community, and creativity, aiming to empower individuals to share ideas, develop skills, and make a lasting impact.`,
+      bio: `Darssan L. Eswaramoorthi is a graduate of the University of South Carolina with a B.S.E. Computer Engineering, with research spanning Hybrid AI and hardware cybersecurity. Passionate about creating opportunities for others, he leads initiatives that spotlight people’s strengths, from co-organizing TEDxCongaree Vista to founding and growing organizations that connect students with industry, service, and leadership experiences. His work bridges technology, community, and creativity, aiming to empower individuals to share ideas, develop skills, and make a lasting impact.`,
     },
     {
       name: "Luke Jannazzo",
       role: "Event Manager (Co-organizer)",
       photoUrl: Luke,
-      bio: `Luke Jannazzo is a junior Computer Engineering student at the University of South Carolina, with professional experience spanning state government, startups, and small businesses. He currently serves as Event Manager for TEDxCongaree Vista, overseeing day-of logistics, ticketing, venue procurement, and catering. He also founded Inspire Columbia, the parent nonprofit organization of TEDxCongaree Vista.
+      bio: `Luke Jannazzo is a senior Computer Engineering student at the University of South Carolina, with professional experience spanning state government, startups, and small businesses. He currently serves as Event Manager for TEDxCongaree Vista, overseeing day-of logistics, ticketing, venue procurement, and catering. He also founded Inspire Columbia, the parent nonprofit organization of TEDxCongaree Vista.
 He is an introductory physics teaching assistant, and serves as president of Kappa Theta Pi, an organization connecting nonprofits with students to provide technology consulting free of charge. He is passionate about the intersection of technology, business, finance, and world issues, and strives to have an impact on these areas.`,
     },
     {
@@ -77,28 +77,28 @@ He is highly involved both on campus, throughout the city of Columbia, and in th
       name: "Simran Tippabhatla",
       role: "Marketing Director",
       photoUrl: Simran,
-      bio: `Simran Tippabhatla is a senior Biological Sciences student at the University of South Carolina pursuing a career in healthcare. She currently serves as the Marketing and Promotion Director of TEDxCongaree Vista.
+      bio: `Simran Tippabhatla is a Biological Sciences graduate of the University of South Carolina pursuing a career in healthcare. She currently serves as the Marketing and Promotion Director of TEDxCongaree Vista.
 On campus, she is a peer leader for the school’s University 101 program, and serves on multiple executive boards for both cultural and healthcare organizations. Passionate about rural healthcare disparities and healthcare education, she hopes to empower others to serve their communities.`,
     },
     {
       name: "Vaishali Allibada",
       role: "Curation Director",
       photoUrl: Vaishali,
-      bio: `Vaishali Allibada is a freshman Engineering student at the University of South Carolina – Columbia. She serves as the Associate Director of Curation and Sponsorships & Partnerships Manager for TEDxCongaree Vista, where she helps spotlight innovative voices in STEM and create platforms for students and changemakers to share their work.
+      bio: `Vaishali Allibada is a sophomore Engineering student at the University of South Carolina – Columbia. She serves as the Associate Director of Curation and Sponsorships & Partnerships Manager for TEDxCongaree Vista, where she helps spotlight innovative voices in STEM and create platforms for students and changemakers to share their work.
 On campus, Vaishali is a STEM Signing Day Honoree, University Scholar, and undergraduate researcher in the ARTS-Lab. She is active in the Society of Women Engineers (SWE) and Engineers Without Borders, contributing to projects that apply engineering to real-world challenges. Passionate about using technology to drive innovation, she seeks to empower others to think creatively, solve problems, and make meaningful contributions to STEM and the wider Columbia community.`,
     },
     {
       name: "Mohin Amin",
       role: "Sponsorships Manager",
       photoUrl: Mohin,
-      bio: `Mohin Amin is a junior at the University of South Carolina Honors College, majoring in Cardiovascular Technology on the pre-med track. As a Sponsorships Manager for TEDxCongaree Vista, Mohin is passionate about building partnerships and securing resources that create a platform where every speaker’s voice can be heard and amplified. Through this work, he hopes to bring about meaningful change within the community and beyond.
+      bio: `Mohin Amin is a senior at the University of South Carolina Honors College, majoring in Cardiovascular Technology on the pre-med track. As a Sponsorships Manager for TEDxCongaree Vista, Mohin is passionate about building partnerships and securing resources that create a platform where every speaker’s voice can be heard and amplified. Through this work, he hopes to bring about meaningful change within the community and beyond.
 He is actively involved in campus leadership through Delta Epsilon Psi Fraternity, Inc., Alpha Epsilon Delta, NMDP, the Indian Cultural Organization, and as an Ambassador for the College of Arts and Sciences. In addition to his leadership roles, he conducts undergraduate research in the Webb Lab, focusing on the effects of hypertension and vascular dysfunction on cardiovascular disease.`,
     },
     {
       name: "Tyler Zolkos",
       role: "Technical Producer",
       photoUrl: Tyler,
-      bio: `Tyler Zolkos is a junior at the University of South Carolina majoring in Computer Science with a concentration in Cybersecurity. With years of experience in event production, lighting design, and graphic design, he brings both technical knowledge and creative vision to live events and visual storytelling. Tyler is passionate about using his skills in to create experiences that bring people together in Columbia.`
+      bio: `Tyler Zolkos is a senior at the University of South Carolina majoring in Computer Science with a concentration in Cybersecurity. With years of experience in event production, lighting design, and graphic design, he brings both technical knowledge and creative vision to live events and visual storytelling. Tyler is passionate about using his skills in to create experiences that bring people together in Columbia.`
     },
     {
       name: "Dr. Amenah Salman",
