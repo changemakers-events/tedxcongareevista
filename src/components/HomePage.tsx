@@ -1,31 +1,28 @@
 import { motion } from "motion/react";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { VideoMarquee } from "./VideoMarquee";
+import { PhotoMarquee } from "./PhotoMarquee";
+import { ViewCounter } from "./ViewCounter";
+import { eventPhotos } from "../data/eventPhotos";
 import heroImg from "../assets/2017ColumbiaSkylineTEDx.webp";
+import TysonSquare from "../assets/TysonSquare.webp";
+import FabioSquare from "../assets/FabioSquare.webp";
+import RisdonSquare from "../assets/RisdonSquare.webp";
+import MattSquare from "../assets/MattSquare.webp";
+import "./HomePage.css";
 
 export function HomePage() {
   const navigate = useNavigate();
-  const stats = [
-    { icon: Calendar, label: "Date", value: "March 14, 2026", type: "text" as const },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Columbia Metropolitan Convention Center",
-      type: "link" as const,
-      link:
-        "https://www.google.com/maps/search/?api=1&query=1101+Lincoln+St,+Columbia,+SC+29201",
-    },
-    { icon: Users, label: "Speakers", value: "16 Inspiring Voices", type: "button" as const },
-  ];
 
-  const handleStatClick = (stat: (typeof stats)[0]) => {
-    if (stat.type === "link" && stat.link) {
-      window.open(stat.link, "_blank", "noopener,noreferrer");
-    } else if (stat.type === "button" && stat.label === "Speakers") {
-      navigate("/speakers");
-    }
-  };
+  // Square speaker crops for the corkboard photos pinned in the hero.
+  const heroSpeakers = [
+    { image: TysonSquare, name: "Tyson Keon Brown" },
+    { image: FabioSquare, name: "Fabio Matta" },
+    { image: RisdonSquare, name: "Risdon Nichols Slate" },
+    { image: MattSquare, name: "Matt Vaadi" },
+  ];
 
   return (
     <div>
@@ -34,7 +31,8 @@ export function HomePage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative h-screen overflow-hidden"
+        className="relative overflow-hidden"
+        style={{ minHeight: "66.67vh", display: "flex", flexDirection: "column" }}
       >
         <style>{`
           @keyframes tedxBlink {
@@ -68,6 +66,7 @@ export function HomePage() {
             />
 
             {/* readability layer */}
+
             <div className="absolute inset-0 bg-gradient-to-b from-black/165 via-black/40 to-transparent" />
           </div>
 
@@ -81,7 +80,46 @@ export function HomePage() {
           />
         </motion.div>
 
-        <div className="relative z-10 h-full flex items-center justify-center px-4">
+        {/* Corkboard speaker photos pinned to the screen edges (hidden on small screens) */}
+        <div className="hero-photos" aria-hidden="true">
+          <motion.div
+            className="hero-photo hero-photo--lt"
+            initial={{ opacity: 0, y: 36, rotate: -7 }}
+            animate={{ opacity: 1, y: 0, rotate: -7 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+          >
+            <ImageWithFallback src={heroSpeakers[0].image} alt={heroSpeakers[0].name} className="hero-photo-img" />
+          </motion.div>
+          <motion.div
+            className="hero-photo hero-photo--lb"
+            initial={{ opacity: 0, y: 36, rotate: 5 }}
+            animate={{ opacity: 1, y: 0, rotate: 5 }}
+            transition={{ delay: 0.62, duration: 0.7 }}
+          >
+            <ImageWithFallback src={heroSpeakers[1].image} alt={heroSpeakers[1].name} className="hero-photo-img" />
+          </motion.div>
+          <motion.div
+            className="hero-photo hero-photo--rt"
+            initial={{ opacity: 0, y: 36, rotate: 7 }}
+            animate={{ opacity: 1, y: 0, rotate: 7 }}
+            transition={{ delay: 0.56, duration: 0.7 }}
+          >
+            <ImageWithFallback src={heroSpeakers[2].image} alt={heroSpeakers[2].name} className="hero-photo-img" />
+          </motion.div>
+          <motion.div
+            className="hero-photo hero-photo--rb"
+            initial={{ opacity: 0, y: 36, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, rotate: -5 }}
+            transition={{ delay: 0.68, duration: 0.7 }}
+          >
+            <ImageWithFallback src={heroSpeakers[3].image} alt={heroSpeakers[3].name} className="hero-photo-img" />
+          </motion.div>
+        </div>
+
+        <div
+          className="relative z-10 flex-1 flex items-center justify-center px-4"
+          style={{ paddingTop: "100px", paddingBottom: "40px" }}
+        >
           {/* Outer wrapper only translates — no opacity — so backdrop-filter children
               are never inside an opacity < 1 compositing layer */}
           <motion.div
@@ -101,7 +139,7 @@ export function HomePage() {
                   "0 4px 8px rgba(0,0,0,0.75), 0 10px 20px rgba(0,0,0,0.6), 0 2px 0 rgba(0,0,0,0.35)",
               }}
             >
-              Bringing TEDx Back to Columbia
+              Columbia's Premier TEDx Event
             </motion.h1>
 
             <motion.p
@@ -114,24 +152,6 @@ export function HomePage() {
               An unforgettable journey through innovation, creativity, and inspiration
             </motion.p>
 
-            <div className="mt-6 mb-4">
-              {/* motion.span so this element animates its own opacity — backdrop-filter
-                  on an element animating its OWN opacity works fine; it only breaks
-                  when an ANCESTOR has opacity < 1 */}
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.8 }}
-                className="inline-block px-12 py-4 rounded-full bg-black/40 border border-white/20 text-white font-bold text-lg sm:text-xl shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
-                style={{
-                  textShadow: "0 2px 4px rgba(0,0,0,0.5)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)"
-                }}
-              >
-                Saturday, March 14th, 2026 10 AM - 5 PM
-              </motion.span>
-            </div>
             </div>
 
             {/* Tickets CTA */}
@@ -150,7 +170,7 @@ export function HomePage() {
                     rounded-full
                     text-base sm:text-lg font-semibold tracking-wide
                     text-black
-                    bg-white
+                bg-white
                     border border-white/20
                     backdrop-blur-md
                     shadow-[0_18px_55px_rgba(0,0,0,0.35)]
@@ -202,58 +222,56 @@ export function HomePage() {
         </div>
       </motion.section>
 
-      {/* STATS */}
-      {/* Goal: match the About-page "raised" box: solid surface, clean border, not transparent */}
-      <section className="py-16 sm:py-20 px-4 bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className={[
-              "rounded-3xl",
-              
-    
-              // raised shadow like your About box
-              "shadow-[0_18px_55px_rgba(0,0,0,0.16)]",
-              "p-8 sm:p-10 md:p-12",
-            ].join(" ")}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {stats.map((stat, index) => (
-                <motion.button
-                  key={stat.label}
-                  type="button"
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.12 * index, duration: 0.55 }}
-                  onClick={() => handleStatClick(stat)}
-                  className={[
-                    "text-center p-8 rounded-2xl",
-                    // slightly tinted inner tiles (still solid, not transparent)
-                    "bg-gray-50",
-                    "border border-gray-200",
-                    "shadow-sm hover:shadow-md transition-all",
-                    "outline-none",
-                    stat.type !== "text" ? "cursor-pointer" : "cursor-default",
-                  ].join(" ")}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.08, rotate: 4 }}
-                    transition={{ type: "spring", stiffness: 260 }}
-                    className="inline-flex items-center justify-center w-16 h-16 bg-[#E62B1E] rounded-full mb-4 shadow-sm"
-                  >
-                    <stat.icon className="text-white" size={28} />
-                  </motion.div>
+      {/* TALK MARQUEE */}
+      <section style={{ paddingTop: "4rem", paddingBottom: "2.5rem" }}>
+        <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl text-black mb-3">Watch the talks</h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Sixteen ideas worth spreading, straight from the TEDxCongaree Vista stage.
+          </p>
+        </div>
+        <VideoMarquee />
 
-                  <h3 className="text-gray-600 mb-2">{stat.label}</h3>
-                  <p className="text-2xl text-black break-words">{stat.value}</p>
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+        <div className="flex justify-center px-4" style={{ marginTop: "2.5rem" }}>
+          <motion.a
+            href="https://www.youtube.com/playlist?list=PL4tc6u_lEThgWNhC2UyfEtR5dPA-wCd1I"
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="
+              inline-flex items-center justify-center gap-2
+              px-8 py-3
+              rounded-full
+              text-base font-semibold
+              text-white
+              bg-[#E62B1E]
+              shadow-md
+              hover:bg-[#c22419]
+              transition-all duration-300
+            "
+          >
+            View all talks
+            <ArrowRight size={18} />
+          </motion.a>
         </div>
       </section>
+
+      {/* TOTAL YOUTUBE VIEWS */}
+      <ViewCounter />
+
+      {/* EVENT PHOTOS MARQUEE — hidden until photos exist in src/assets/events/ */}
+      {eventPhotos.length > 0 && (
+        <section style={{ paddingTop: "2.5rem", paddingBottom: "4rem" }}>
+          <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl text-black mb-3">Moments from the event</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Scenes from a day of bold ideas in the Congaree Vista.
+            </p>
+          </div>
+          <PhotoMarquee />
+        </section>
+      )}
 
       {/* WHAT IS TEDX INFO CARD */}
       <section className="py-16 sm:py-20 px-4 bg-transparent">

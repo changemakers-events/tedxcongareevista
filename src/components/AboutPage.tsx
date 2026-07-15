@@ -17,6 +17,7 @@ import Mohin from "../assets/headshots/team/mohin.webp";
 import Owen from "../assets/headshots/team/owen.webp";
 import Amenah from "../assets/headshots/team/amenah.webp";
 import Tyler from "../assets/headshots/team/tyler.webp";
+import Tim from "../assets/headshots/team/tim.webp";
 
 type TeamMember = {
   name: string;
@@ -112,6 +113,13 @@ He is actively involved in campus leadership through Delta Epsilon Psi Fraternit
       photoUrl: Owen,
       bio: `Owen Coulam is a student at the University of South Carolina, where he is pursuing a career in the tech industry. He formerly served as the Curation Director for TEDxCongaree Vista. Passionate about technology and entrepreneurship, Owen is focused on creating space and support for changemakers who turn bold ideas into real-world impact.
 On campus, he founded Kappa Theta Pi, a philanthropic organization that provides tech solutions to nonprofits, helping mission-driven groups expand their reach through innovation and collaboration. He believes changemakers are defined not by titles, but by the problems they choose to solve, and through this TEDx event, he hopes to elevate voices building smarter systems, reimagining industries, and driving meaningful change.`,
+    },
+    {
+      name: "Timothy George",
+      role: "Curation Assistant",
+      photoUrl: Tim,
+      bio: "Tim George is a student at the University of South Carolina pursuing a career in medicine. Passionate about building systems that expand access to care, he is a co-founder of Gamecock EMS, a student-led emergency medical service dedicated to improving response times to on-campus emergencies while providing certified EMTs at USC with opportunities for hands on experience. Furthermore, he is currently developing a peer support mental health hotline aimed at improving student well-being by allowing students in need to connect with peers for accessible, relatable support. Tim also works as an EMT in Columbia, where he serves the community by responding to medical emergencies across the city. His academic work spans multiple disciplines, including cardiovascular research at the Cardiovascular Translational Research Center, immunology research at the Georgia Cancer Center, and public health research exploring how temporal framing in nicotine warning labels influences perception among smokers. Tim served as a curation assistant for TEDxCongaree Vista 2026, where he helped review over 200 speaker applications and played a key role in shaping a final cohort of 16 speakers. His work is driven by a belief in thoughtful storytelling and community impact.",
+
     },
   ];
 

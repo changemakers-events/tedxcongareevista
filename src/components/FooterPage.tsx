@@ -40,6 +40,19 @@ export function Footer() {
             />
           </Link>
 
+          {/* Inspire Columbia Logo */}
+          <a
+            href="https://inspirecolumbia.org/"
+            className="cursor-pointer"
+            style={{ marginTop: "0.5rem", marginBottom: "2rem" }}
+          >
+            <img
+              src="/assets/InspireBlackLogo.webp"
+              alt="Inspire Columbia Logo"
+              style={{ height: "7.375rem", width: "auto" }}
+            />
+          </a>
+
           {/* Disclaimer + Copyright */}
           <div className="mt-4">
             <p className="text-sm text-black">
