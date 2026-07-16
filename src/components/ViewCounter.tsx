@@ -18,7 +18,7 @@ import { motion } from "motion/react";
  */
 
 // Shown when the view total can't be fetched/calculated (endpoint down, API error, empty result).
-const FALLBACK_TOTAL = "100,000+";
+const FALLBACK_TOTAL = "150,000+";
 
 /** Counts up to `target` once, over `duration` ms, easing out. */
 function useCountUp(target: number, duration = 1600) {

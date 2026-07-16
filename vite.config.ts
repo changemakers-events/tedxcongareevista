@@ -1,11 +1,13 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Dev-only: `vite dev` doesn't run the Vercel /api function, so serve
 // /api/youtube-views locally using YT_API_KEY from .env. This runs ONLY under
 // `vite dev` (apply: 'serve') — production still uses api/youtube-views.js.
 const PLAYLIST_ID = 'PL4tc6u_lEThgWNhC2UyfEtR5dPA-wCd1I';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Sum view counts across every video in the playlist. Throws on any failure so
 // the caller can map it to a 502.

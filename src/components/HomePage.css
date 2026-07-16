@@ -1,37 +1,179 @@
-/* HomePage.css — hero corkboard speaker photos */
+.home-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050507;
+}
 
-/* Layer of speaker photos pinned to the left/right edges of the hero.
-   Hidden on smaller screens so the hero stays focused on the CTA. */
+.home-hero-overlay {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(230, 43, 30, 0.13), transparent 22rem),
+    linear-gradient(180deg, rgba(6, 7, 13, 0.72) 0%, rgba(7, 8, 16, 0.47) 42%, rgba(7, 8, 16, 0.88) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, transparent 24%, transparent 76%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+.home-hero-bottom-fade {
+  height: 38vh;
+  background: linear-gradient(180deg, rgba(5, 5, 7, 0) 0%, rgba(5, 5, 7, 0.78) 58%, #050507 100%);
+}
+
+.home-hero-content {
+  flex: 1 0 auto;
+  min-height: 61vh;
+  padding-top: 7.25rem;
+  padding-bottom: 1.5rem;
+}
+
+.home-hero-kicker {
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.8);
+}
+
+.home-hero-kicker::first-letter {
+  color: #e62b1e;
+}
+
+.home-hero-title {
+  max-width: min(980px, 84vw);
+  margin: 0 auto 1rem;
+  color: #ffffff;
+  font-size: clamp(3rem, 6.2vw, 6.8rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-wrap: balance;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.8);
+}
+
+.home-hero-subtitle {
+  max-width: 760px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  line-height: 1.45;
+  text-wrap: balance;
+  text-shadow: 0 5px 20px rgba(0, 0, 0, 0.75);
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.home-hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.25rem;
+  padding: 0.9rem 1.45rem;
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.home-hero-button--primary {
+  color: #ffffff;
+  background: #e62b1e;
+  box-shadow: 0 16px 38px rgba(230, 43, 30, 0.32);
+}
+
+.home-hero-button--primary:hover {
+  background: #ff3022;
+}
+
+.home-hero-button--secondary {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.home-hero-button--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.home-talks {
+  margin-top: auto;
+  padding: 0 0 1.35rem;
+}
+
+.home-talks-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 112rem;
+  margin: 0 auto 1rem;
+  padding: 0 2rem;
+  color: #ffffff;
+}
+
+.home-talks-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.3vw, 3.7rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.82);
+}
+
+.home-talks-heading p {
+  max-width: 680px;
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+}
+
+.home-playlist-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 700;
+  text-transform: lowercase;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.home-playlist-link:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
 .hero-photos {
   position: absolute;
   inset: 0;
-  z-index: 5; /* above the background image, below the centered content (z-10) */
+  z-index: 5;
   pointer-events: none;
   display: none;
 }
 
-/* Only show the photos once the viewport is wide AND tall enough to hold two
-   stacked photos per side plus the centered content — below this they hide
-   rather than overlap (also covers high browser zoom, which shrinks vw/vh). */
-@media (min-width: 1280px) and (min-height: 600px) {
+@media (min-width: 1180px) and (min-height: 700px) {
   .hero-photos {
     display: block;
   }
 }
 
-/* A single photo — white polaroid-style frame with a dropped shadow.
-   Size is bounded by BOTH viewport
-   height (21vh, so two stack without overlapping and the lower photo's shadow
-   clears the hero's bottom edge) and viewport width (15vw, so they never crowd
-   the centered content), clamped 175–250px. */
 .hero-photo {
-  --photo: clamp(175px, min(21vh, 15vw), 250px);
+  --photo: clamp(145px, min(18vh, 11vw), 215px);
   position: absolute;
   width: var(--photo);
-  padding: 10px 10px 30px;
-  background: #fdfdf8;
+  padding: 9px 9px 28px;
+  background: #fbfbf7;
   border-radius: 4px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.48);
 }
 
 .hero-photo-img {
@@ -42,26 +184,64 @@
   display: block;
 }
 
-/* Pinned positions — two on the left edge, two on the right, each at a slight
-   casual angle. The top pair starts below the fixed navbar (~88px).
-   The casual rotation is applied via Motion (in HomePage.tsx) alongside the
-   slide-up entrance, since Motion owns the element's `transform`. */
 .hero-photo--lt {
-  top: 100px;
-  left: 1.5%;
+  top: 16vh;
+  left: max(-0.25rem, 0.7vw);
 }
 
 .hero-photo--lb {
-  bottom: 60px;
-  left: 4%;
+  top: 38vh;
+  left: max(1.5rem, 3.4vw);
 }
 
 .hero-photo--rt {
-  top: 100px;
-  right: 1.5%;
+  top: 15vh;
+  right: max(-0.25rem, 0.9vw);
 }
 
 .hero-photo--rb {
-  bottom: 60px;
-  right: 4%;
+  top: 38vh;
+  right: max(1.6rem, 3.5vw);
+}
+
+@media (max-width: 900px) {
+  .home-hero-content {
+    min-height: 58vh;
+    padding-top: 6.5rem;
+  }
+
+  .home-hero-actions {
+    margin-top: 1.45rem;
+  }
+
+  .home-talks-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    min-height: 100svh;
+  }
+
+  .home-hero-content {
+    min-height: 56vh;
+    padding-top: 6rem;
+  }
+
+  .home-hero-title {
+    max-width: 96vw;
+    font-size: clamp(2.45rem, 13vw, 4rem);
+  }
+
+  .home-hero-button {
+    width: min(100%, 18rem);
+  }
+
+  .home-talks {
+    padding-bottom: 0.85rem;
+  }
 }
