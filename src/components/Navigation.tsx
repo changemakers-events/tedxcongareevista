@@ -5,8 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 import longLogoBlack from "../assets/longlogo-black.webp";
-import longLogoWhite from "../assets/longlogo-white.webp";
-import "./Navigation.css";
 
 export function Navigation() {
   const navigate = useNavigate();
@@ -14,7 +12,6 @@ export function Navigation() {
 
   // Deduce the current page name from the URL pathname to style active link
   const currentPathPage = location.pathname.split("/")[1] || "home";
-  const isHome = currentPathPage === "home";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -31,12 +28,12 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`site-nav fixed left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 ${isHome ? "site-nav--home" : "site-nav--page"}`}
+      className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
     >
       <div
-        className={`site-nav-shell max-w-7xl mx-auto backdrop-blur-sm ${
-          isHome ? "site-nav-shell--home" : "site-nav-shell--page"
-        } ${mobileMenuOpen ? "rounded-3xl" : "rounded-full"} ${isHome && !mobileMenuOpen ? "site-nav-shell--clear" : ""}`}
+        className={`max-w-7xl mx-auto bg-white/95 backdrop-blur-sm shadow-lg border border-gray-100 ${
+          mobileMenuOpen ? "rounded-3xl" : "rounded-full"
+        }`}
       >
         <div className="flex items-center justify-between h-16 px-6 sm:px-8">
           <motion.div
@@ -46,9 +43,9 @@ export function Navigation() {
             className="flex-shrink-0 cursor-pointer flex items-center"
             onClick={() => navigate("/")}
           >
-            <div className={`h-8 sm:h-10 overflow-hidden flex items-center min-w-[120px] sm:min-w-[180px] ${isHome ? "home-logo-mark" : ""}`}>
+            <div className="h-8 sm:h-10 overflow-hidden flex items-center min-w-[120px] sm:min-w-[180px]">
               <ImageWithFallback
-                src={isHome && !mobileMenuOpen ? longLogoWhite : longLogoBlack}
+                src={longLogoBlack}
                 alt="TEDxCongaree Vista logo"
                 style={{
                   height: "3rem",
@@ -72,9 +69,7 @@ export function Navigation() {
                 className={`relative px-1 py-2 transition-colors cursor-pointer ${
                   currentPathPage === item.id
                     ? "text-[#E62B1E]"
-                    : isHome
-                      ? "site-nav-link--home"
-                      : "text-gray-700 hover:text-[#E62B1E]"
+                    : "text-gray-700 hover:text-[#E62B1E]"
                 }`}
               >
                 {item.label}
@@ -92,7 +87,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <button
-              className={`p-2 ${isHome && !mobileMenuOpen ? "site-nav-menu--home" : "text-gray-700"}`}
+              className="p-2 text-gray-700"
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label="Toggle menu"
             >
