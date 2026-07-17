@@ -1,0 +1,30 @@
+/* Navbar shell: transparent at top of page, solid white pill once scrolled
+   (or when the mobile menu is open). */
+.nav-shell {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.nav-shell--solid {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(243, 244, 246, 1); /* gray-100 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.nav-shell--transparent {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Link color while the nav is transparent over the dark hero */
+.nav-link--light {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.nav-link--light:hover {
+  color: #ffffff;
+}

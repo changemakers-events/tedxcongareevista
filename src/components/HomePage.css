@@ -143,7 +143,6 @@
   flex: 0 0 auto;
   color: rgba(255, 255, 255, 0.82);
   font-weight: 700;
-  text-transform: lowercase;
   transition: color 160ms ease, transform 160ms ease;
 }
 

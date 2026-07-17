@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 import longLogoBlack from "../assets/longlogo-black.webp";
+import longLogoWhite from "../assets/longlogo-white.webp";
+import "./Navigation.css";
 
 export function Navigation() {
   const navigate = useNavigate();
@@ -13,6 +15,17 @@ export function Navigation() {
   // Deduce the current page name from the URL pathname to style active link
   const currentPathPage = location.pathname.split("/")[1] || "home";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // The open mobile menu needs the solid white background to stay readable
+  const solid = scrolled || mobileMenuOpen;
 
   const navItems = [
     { id: "home", label: "Home" },
@@ -31,9 +44,9 @@ export function Navigation() {
       className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
     >
       <div
-        className={`max-w-7xl mx-auto bg-white/95 backdrop-blur-sm shadow-lg border border-gray-100 ${
-          mobileMenuOpen ? "rounded-3xl" : "rounded-full"
-        }`}
+        className={`nav-shell max-w-7xl mx-auto ${
+          solid ? "nav-shell--solid" : "nav-shell--transparent"
+        } ${mobileMenuOpen ? "rounded-3xl" : "rounded-full"}`}
       >
         <div className="flex items-center justify-between h-16 px-6 sm:px-8">
           <motion.div
@@ -45,7 +58,7 @@ export function Navigation() {
           >
             <div className="h-8 sm:h-10 overflow-hidden flex items-center min-w-[120px] sm:min-w-[180px]">
               <ImageWithFallback
-                src={longLogoBlack}
+                src={solid ? longLogoBlack : longLogoWhite}
                 alt="TEDxCongaree Vista logo"
                 style={{
                   height: "3rem",
@@ -69,7 +82,9 @@ export function Navigation() {
                 className={`relative px-1 py-2 transition-colors cursor-pointer ${
                   currentPathPage === item.id
                     ? "text-[#E62B1E]"
-                    : "text-gray-700 hover:text-[#E62B1E]"
+                    : solid
+                      ? "text-gray-700 hover:text-[#E62B1E]"
+                      : "nav-link--light"
                 }`}
               >
                 {item.label}
@@ -87,7 +102,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <button
-              className="p-2 text-gray-700"
+              className={`p-2 ${solid ? "text-gray-700" : "text-white"}`}
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label="Toggle menu"
             >
