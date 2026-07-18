@@ -154,7 +154,7 @@ export function HomePage() {
               rel="noreferrer"
               className="home-playlist-link"
             >
-              Full playlist
+              Full Playlist
               <ArrowRight size={17} />
             </a>
           </div>

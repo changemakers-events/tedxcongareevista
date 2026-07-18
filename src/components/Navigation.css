@@ -1,38 +1,30 @@
-.site-nav {
-  top: 1.5rem;
+/* Navbar shell: transparent at top of page, solid white pill once scrolled
+   (or when the mobile menu is open). */
+.nav-shell {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid transparent;
 }
 
-.site-nav--home {
-  top: 1.25rem;
-}
-
-.site-nav-shell {
-  border: 1px solid rgba(229, 231, 235, 1);
+.nav-shell--solid {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border-color: rgba(243, 244, 246, 1); /* gray-100 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
-.site-nav-shell--home {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.18);
+.nav-shell--transparent {
+  background: transparent;
   box-shadow: none;
 }
 
-.site-nav-link--home {
-  color: rgba(255, 255, 255, 0.82);
+/* Link color while the nav is transparent over the dark hero */
+.nav-link--light {
+  color: rgba(255, 255, 255, 0.88);
 }
 
-.site-nav-link--home:hover {
+.nav-link--light:hover {
   color: #ffffff;
-}
-
-.site-nav-menu--home {
-  color: #ffffff;
-}
-
-@media (min-width: 768px) {
-  .site-nav-shell--home.site-nav-shell--clear {
-    border-color: transparent;
-    background: transparent;
-  }
 }
