@@ -20,6 +20,15 @@
   flex: 0 0 auto;
   width: 320px;
   text-decoration: none;
+  /* Rendered as a <button>; strip the native button chrome. */
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
 }
 
 .mq-thumb {

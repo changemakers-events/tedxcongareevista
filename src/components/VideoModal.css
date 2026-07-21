@@ -1,0 +1,344 @@
+/* VideoModal.css — in-page YouTube player for the HomePage video carousel.
+   Hand-written CSS (this project ships a pre-compiled Tailwind build, so new
+   utility classes are not available). Accent colors read the theme variables
+   so the modal works in both light and dark mode. */
+
+.vm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60; /* above the fixed nav (z-50) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.vm-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  /* Definite height + a bounded row track so each column can scroll its own
+     overflow instead of the whole card clipping its content. */
+  grid-template-rows: minmax(0, 1fr);
+  gap: 1.25rem;
+  width: min(1120px, 100%);
+  height: min(92vh, 820px);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: #14141b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+}
+
+.dark .vm-card {
+  background: #0f0f16;
+}
+
+/* ---------- Close button ---------- */
+.vm-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.vm-close:hover {
+  background: var(--tedx-red, #e62b1e);
+  transform: translateY(-1px);
+}
+
+/* ---------- Left column (player + speaker) ---------- */
+/* Scrollable areas keep their scroll but hide the visible scrollbar. */
+.vm-main,
+.vm-playlist-list {
+  scrollbar-width: none; /* Firefox */
+}
+
+.vm-main::-webkit-scrollbar,
+.vm-playlist-list::-webkit-scrollbar {
+  display: none; /* Chrome / Safari / Edge */
+}
+
+.vm-main {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.vm-player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+.vm-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.vm-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.85;
+  transition: background 0.18s ease, opacity 0.18s ease;
+}
+
+.vm-nav-btn:hover {
+  opacity: 1;
+  background: rgba(230, 43, 30, 0.95);
+}
+
+.vm-nav-btn--prev {
+  left: 0.6rem;
+}
+
+.vm-nav-btn--next {
+  right: 0.6rem;
+}
+
+/* ---------- Speaker block ---------- */
+.vm-speaker {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.vm-headshot {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 0.9rem;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.vm-speaker-text {
+  min-width: 0;
+}
+
+.vm-talk-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.vm-speaker-name {
+  margin: 0.3rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--tedx-red, #e62b1e);
+}
+
+.vm-speaker-role {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vm-bio {
+  margin: 0.55rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.vm-description {
+  margin: 0.45rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.vm-yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.18s ease;
+}
+
+.vm-yt-link:hover {
+  color: var(--tedx-red, #e62b1e);
+}
+
+/* ---------- Right column (playlist) ---------- */
+.vm-playlist {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.vm-playlist-heading {
+  margin: 0 0 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.vm-playlist-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.35rem 0 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.vm-item {
+  display: flex;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.4rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.vm-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.vm-item--active {
+  background: rgba(230, 43, 30, 0.16);
+  border-left-color: var(--tedx-red, #e62b1e);
+  box-shadow: inset 0 0 0 1px rgba(230, 43, 30, 0.35);
+}
+
+.vm-item--active:hover {
+  background: rgba(230, 43, 30, 0.2);
+}
+
+.vm-item-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tedx-red, #e62b1e);
+}
+
+.vm-item-thumb {
+  flex: 0 0 auto;
+  width: 96px;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.vm-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vm-item-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vm-item-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.92);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vm-item-name {
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- Mobile: single stacked column ---------- */
+@media (max-width: 860px) {
+  .vm-backdrop {
+    padding: 0.75rem;
+  }
+
+  .vm-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    /* Content-sized on mobile: the whole card scrolls, not each column. */
+    height: auto;
+    max-height: 94vh;
+    padding: 0.85rem;
+    gap: 0.85rem;
+    overflow-y: auto;
+  }
+
+  .vm-main {
+    min-height: auto;
+    overflow-y: visible;
+  }
+
+  .vm-playlist-list {
+    flex: 0 0 auto;
+    min-height: auto;
+    overflow-y: visible;
+  }
+
+  .vm-headshot {
+    width: 64px;
+    height: 64px;
+  }
+}
