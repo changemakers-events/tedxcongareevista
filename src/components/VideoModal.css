@@ -99,6 +99,63 @@
   display: block;
 }
 
+/* ---------- Fallback when the embed can't load ---------- */
+.vm-player-fallback {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-decoration: none;
+}
+
+.vm-player-fallback img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vm-player-fallback-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  background: rgba(0, 0, 0, 0.55);
+  transition: background 0.18s ease;
+}
+
+.vm-player-fallback:hover .vm-player-fallback-overlay {
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.vm-player-fallback-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(230, 43, 30, 0.95);
+  box-shadow: 0 10px 22px rgba(230, 43, 30, 0.35);
+  transition: transform 0.18s ease;
+}
+
+.vm-player-fallback:hover .vm-player-fallback-play {
+  transform: scale(1.06);
+}
+
+.vm-player-fallback-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+
 .vm-nav-btn {
   position: absolute;
   top: 50%;

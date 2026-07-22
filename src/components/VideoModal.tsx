@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, ExternalLink, Play, X } from "lucide-react";
@@ -9,8 +9,6 @@ type VideoModalProps = {
   speakers: Speaker[];
   /** Index of the talk currently playing, or null when the modal is closed. */
   activeIndex: number | null;
-  /** Watched talk names, oldest first — drives the queue order. */
-  watched: string[];
   onSelect: (index: number) => void;
   onClose: () => void;
 };
@@ -20,30 +18,48 @@ const thumb = (url: string) => {
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
 };
 
-export function VideoModal({ speakers, activeIndex, watched, onSelect, onClose }: VideoModalProps) {
+/** If the embed hasn't fired `load` within this window we assume it was
+    blocked (CSP, network, embedding disabled) and show the thumbnail fallback. */
+const EMBED_TIMEOUT_MS = 5000;
+
+export function VideoModal({ speakers, activeIndex, onSelect, onClose }: VideoModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const activeItemRef = useRef<HTMLLIElement>(null);
+  const failTimer = useRef<number | null>(null);
   const open = activeIndex !== null;
   const count = speakers.length;
 
-  // Queue order: the talk now playing is pinned to the top; everything below is
-  // ordered least recently watched first (never-watched, then oldest → most
-  // recent). "Next" (order[1]) lands on the freshest unwatched talk.
-  const order = useMemo(() => {
-    const pos = new Map(watched.map((name, i) => [name, i]));
-    const rank = (i: number) => (pos.has(speakers[i].name) ? (pos.get(speakers[i].name) as number) : -1);
-    const rest = speakers
-      .map((_, i) => i)
-      .filter((i) => i !== activeIndex)
-      .sort((a, b) => rank(a) - rank(b) || a - b);
-    return activeIndex === null ? rest : [activeIndex, ...rest];
-  }, [speakers, watched, activeIndex]);
+  // Whether the current video's embed failed to load (falls back to thumbnail).
+  const [embedFailed, setEmbedFailed] = useState(false);
 
-  // Step through the queue in its displayed order (with wrap-around).
+  // A successful iframe `load` cancels the pending timeout so the fallback can
+  // never appear over a working video.
+  const handleEmbedLoad = () => {
+    if (failTimer.current !== null) window.clearTimeout(failTimer.current);
+    setEmbedFailed(false);
+  };
+
+  // Step up/down the fixed playlist order (with wrap-around), like YouTube's
+  // Up next list — the "Now playing" highlight moves, the list stays put.
   const step = (delta: number) => {
     if (activeIndex === null) return;
-    const p = order.indexOf(activeIndex);
-    onSelect(order[(p + delta + count) % count]);
+    onSelect((activeIndex + delta + count) % count);
   };
+
+  // Reset the fallback state and arm a load-timeout each time the talk changes.
+  useEffect(() => {
+    if (activeIndex === null) return;
+    setEmbedFailed(false);
+    failTimer.current = window.setTimeout(() => setEmbedFailed(true), EMBED_TIMEOUT_MS);
+    return () => {
+      if (failTimer.current !== null) window.clearTimeout(failTimer.current);
+    };
+  }, [activeIndex]);
+
+  // Keep the highlighted row in view as navigation moves it down the list.
+  useEffect(() => {
+    if (open) activeItemRef.current?.scrollIntoView({ block: "nearest" });
+  }, [activeIndex, open]);
 
   // Escape closes; arrow keys step through the queue.
   useEffect(() => {
@@ -118,15 +134,37 @@ export function VideoModal({ speakers, activeIndex, watched, onSelect, onClose }
             {/* Left column: player + speaker block */}
             <div className="vm-main">
               <div className="vm-player">
-                <iframe
-                  key={activeIndex}
-                  src={`https://www.youtube.com/embed/${getYouTubeId(
-                    speakers[activeIndex].youtubeUrl,
-                  )}?autoplay=1&rel=0`}
-                  title={speakers[activeIndex].title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
+                {embedFailed ? (
+                  <a
+                    className="vm-player-fallback"
+                    href={speakers[activeIndex].youtubeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={thumb(speakers[activeIndex].youtubeUrl)} alt="" />
+                    <span className="vm-player-fallback-overlay">
+                      <span className="vm-player-fallback-play">
+                        <Play size={26} fill="currentColor" />
+                      </span>
+                      <span className="vm-player-fallback-text">
+                        Watch on YouTube
+                        <ExternalLink size={15} />
+                      </span>
+                    </span>
+                  </a>
+                ) : (
+                  <iframe
+                    key={activeIndex}
+                    src={`https://www.youtube.com/embed/${getYouTubeId(
+                      speakers[activeIndex].youtubeUrl,
+                    )}?autoplay=1&rel=0`}
+                    title={speakers[activeIndex].title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    onLoad={handleEmbedLoad}
+                    onError={() => setEmbedFailed(true)}
+                  />
+                )}
                 <button
                   type="button"
                   className="vm-nav-btn vm-nav-btn--prev"
@@ -173,15 +211,14 @@ export function VideoModal({ speakers, activeIndex, watched, onSelect, onClose }
               </div>
             </div>
 
-            {/* Right column: queue ordered least recently watched first. */}
+            {/* Right column: fixed playlist order; the highlight tracks playback. */}
             <div className="vm-playlist" aria-label="Up next">
               <p className="vm-playlist-heading">Up next</p>
               <ul className="vm-playlist-list">
-                {order.map((index) => {
-                  const speaker = speakers[index];
+                {speakers.map((speaker, index) => {
                   const isActive = index === activeIndex;
                   return (
-                    <li key={speaker.name}>
+                    <li key={speaker.name} ref={isActive ? activeItemRef : undefined}>
                       <button
                         type="button"
                         className={`vm-item${isActive ? " vm-item--active" : ""}`}

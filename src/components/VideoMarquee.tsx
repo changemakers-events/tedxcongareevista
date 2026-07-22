@@ -1,42 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { allSpeakers, getYouTubeId } from "../data/sessions";
 import { VideoModal } from "./VideoModal";
 import "./Marquee.css";
 
-const STORAGE_KEY = "tedx-watched-talks";
-
-/** Names of watched talks, oldest first, persisted across visits. */
-function loadWatched(): string[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as string[]) : [];
-  } catch {
-    return [];
-  }
-}
-
 export function VideoMarquee() {
   // Index into allSpeakers of the talk playing in the modal (null = closed).
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  // Watch history drives the "least recently watched" queue order.
-  const [watched, setWatched] = useState<string[]>(loadWatched);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(watched));
-    } catch {
-      /* ignore storage failures (private mode, quota, etc.) */
-    }
-  }, [watched]);
-
-  // Open a talk and mark it as the most recently watched.
-  const openTalk = (index: number) => {
-    setActiveIndex(index);
-    const name = allSpeakers[index].name;
-    setWatched((prev) => [...prev.filter((n) => n !== name), name]);
-  };
 
   // Render the list twice so the track can loop seamlessly.
   const tiles = [...allSpeakers, ...allSpeakers];
@@ -57,7 +28,7 @@ export function VideoMarquee() {
               <button
                 key={`${speaker.name}-${i}`}
                 type="button"
-                onClick={() => openTalk(speakerIndex)}
+                onClick={() => setActiveIndex(speakerIndex)}
                 className="mq-tile group"
                 aria-label={`Watch ${speaker.name}'s talk: ${speaker.title}`}
               >
@@ -83,8 +54,7 @@ export function VideoMarquee() {
       <VideoModal
         speakers={allSpeakers}
         activeIndex={activeIndex}
-        watched={watched}
-        onSelect={openTalk}
+        onSelect={setActiveIndex}
         onClose={() => setActiveIndex(null)}
       />
     </>
