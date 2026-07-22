@@ -366,8 +366,11 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* ---------- Mobile: single stacked column ---------- */
-@media (max-width: 860px) {
+/* ---------- Touch devices: single stacked column ----------
+   Gated on device type (touch-primary), NOT window width, so resizing a desktop
+   window never collapses the full two-column preview. Touch users are normally
+   redirected to YouTube before the modal opens; this stays as a safety net. */
+@media (hover: none) and (pointer: coarse) {
   .vm-backdrop {
     padding: 0.75rem;
   }

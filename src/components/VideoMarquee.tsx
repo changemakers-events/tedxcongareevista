@@ -5,9 +5,23 @@ import { allSpeakers, getYouTubeId } from "../data/sessions";
 import { VideoModal } from "./VideoModal";
 import "./Marquee.css";
 
+// The in-page player is a desktop-only feature. We gate it on device type
+// (touch-primary = phone/tablet), NOT window width, so a desktop user keeps the
+// full preview no matter how narrow they drag the window.
+const MOBILE_QUERY = "(hover: none) and (pointer: coarse)";
+
 export function VideoMarquee() {
   // Index into allSpeakers of the talk playing in the modal (null = closed).
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  // Mobile/tablet opens the YouTube video in a new tab; desktop opens the modal.
+  const openTalk = (speaker: (typeof allSpeakers)[number], speakerIndex: number) => {
+    if (window.matchMedia(MOBILE_QUERY).matches) {
+      window.open(speaker.youtubeUrl, "_blank", "noopener,noreferrer");
+    } else {
+      setActiveIndex(speakerIndex);
+    }
+  };
 
   // Render the list twice so the track can loop seamlessly.
   const tiles = [...allSpeakers, ...allSpeakers];
@@ -28,7 +42,7 @@ export function VideoMarquee() {
               <button
                 key={`${speaker.name}-${i}`}
                 type="button"
-                onClick={() => setActiveIndex(speakerIndex)}
+                onClick={() => openTalk(speaker, speakerIndex)}
                 className="mq-tile group"
                 aria-label={`Watch ${speaker.name}'s talk: ${speaker.title}`}
               >
