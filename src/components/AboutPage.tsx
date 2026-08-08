@@ -84,8 +84,8 @@ On campus, she is a peer leader for the school’s University 101 program, and s
       name: "Vaishali Allibada",
       role: "Curation Director",
       photoUrl: Vaishali,
-      bio: `Vaishali Allibada is a sophomore Engineering student at the University of South Carolina – Columbia. She serves as the Associate Director of Curation and Sponsorships & Partnerships Manager for TEDxCongaree Vista, where she helps spotlight innovative voices in STEM and create platforms for students and changemakers to share their work.
-On campus, Vaishali is a STEM Signing Day Honoree, University Scholar, and undergraduate researcher in the ARTS-Lab. She is active in the Society of Women Engineers (SWE) and Engineers Without Borders, contributing to projects that apply engineering to real-world challenges. Passionate about using technology to drive innovation, she seeks to empower others to think creatively, solve problems, and make meaningful contributions to STEM and the wider Columbia community.`,
+      bio: `Vaishali Allibada is a Mechanical Engineering student at the University of South Carolina, with interests spanning engineering, biomedicine, clean energy and integrated systems modeling. A University Scholar and South Carolina STEM Signing Day Honoree, she is passionate about using engineering as a tool to solve complex challenges and create meaningful impact.
+Driven by the intersection of innovation, service, and hands-on design, she engages in research and engineering organizations such as the American Society of Mechanical Engineers, where she collaborates on projects that connect technical knowledge with real-world applications. Her work bridges engineering, community, and impact, with the goal of developing solutions that improve lives and inspire others to engage with STEM.`,
     },
     {
       name: "Mohin Amin",
